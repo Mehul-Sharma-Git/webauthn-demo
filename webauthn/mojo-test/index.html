@@ -1,35 +1,69 @@
 <!DOCTYPE html>
 
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="
-			
-            https://cdn.mojoauth.com/js/mojoauth.min.js"
+			./mojoauth.min.js"
 		>
     </script>
 </head>
 
 <body>
-
+    <div><h1>Hello mojoauth</h1>
+        <h2>Hello </h2>
+        <p>Hello</p>
+    </div>
     <div id="mojoauth-passwordless-form"></div>
-
+    <div><h1>Hello mojoauth</h1>
+        <h2>Hello </h2>
+        <p>Hello</p>
+    </div>
     <script>
-        
+        let test='Phone OTP'
+        let source;
+         switch(test){
+    case 'Magic Link' : source= [ {type:'email',feature:'magiclink'}]
+                            break;
+    case 'Email OTP' : source= [ {type:'email',feature:'otp'}]
+                            break;
+    case 'Phone OTP' : source= [ {type:'phone',feature:'otp'}]
+                            break;
+    case 'Magic Link and Phone OTP' : source= [ {type:'email',feature:'magiclink'}, {type:'phone',feature:'otp'}]
+                            break;
+    case 'Email OTP and Phone OTP'  : source= [ {type:'email',feature:'otp'}, {type:'phone',feature:'otp'}]
+                            break;
+}
         // Enter you API Key
         config={
-            language: "en",
-            redirect_url: "mojoauth-demo.netlify.app/test",
-            source: [ {type:'phone',feature:'otp'}, {type:'email',feature:'magiclink'}],
+            language: "en", 
+            redirect_url: "localhost:8080/test",
+            source: source,
         }
-        const mojoauth = new MojoAuth( "71736bb0-8a9b-4f4d-8503-62355cfb030b", config);
+
+//         function registerWebAuthnStart(accessToken) {
+//    mojoauth.enableWebauthn(accessToken).then(response => {
+//        console.log(response);
+//        console.log(redirectUrl);
+//    })
+//    .catch(e => {
+//        console.log(e);
+//    });
+// }
+
+        const mojoauth = new MojoAuth( "d24e0d0c-7ad7-4938-a64f-caef36cd93eb", config);
         // Use signInWithEmailOTP() for authentication using Email OTP
         mojoauth.signIn().then( response => {
-                // mojoauth.enableWebauthn(response.oauth.access_token).then(response=> console.log(response))
+            console.log("reached here")
+            document.getElementById('registerWebAuthn').onclick=function(){
+                registerWebAuthnStart(response.oauth.access_token);
+           };
+            
             //          mojoauth.enableWebauthn(response.oauth.access_token)
-            alert( "Please check console to see profile data" );
+            
             console.log( response )
         } );
         // mojoauth.enableWebauthn().then(response=>console.log(response))
     </script>
-</body>
+<!-- <script type="text/javascript">app_id="62c69be5fda2380020ca0217";distribution_key="dist_2";</script><script type="text/javascript" src="https://loader.knack.com/62c69be5fda2380020ca0217/dist_2/knack.js"></script><div id="knack-dist_2">Loading...</div></body> -->
 
 </html>
