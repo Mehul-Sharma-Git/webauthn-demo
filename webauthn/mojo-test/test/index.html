@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-   <head>
-      <script src='https://cdn.mojoauth.com/js/mojoauth.min.js'>
-      </script>
-   </head>
-   <body>
-      <div id="mojoauth-passwordless-form"> </div>
-      <script>
-         const mojoauth = new MojoAuth("71736bb0-8a9b-4f4d-8503-62355cfb030b")
-         mojoauth.signInWithStateID().then(response => console.log(response))
-      </script>
-   </body>
-</html>
+<script>
+function openWidget() {
+FreshworksWidget('open');
+}
+	window.fwSettings={
+	'widget_id':88000000178
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
+</script>
+<script type='text/javascript' src='https://ind-widget.freshworks.com/widgets/88000000178.js' async defer></script>
+
+<button onClick="openWidget()"> Open me</button>

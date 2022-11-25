@@ -2,24 +2,23 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- <script src="./mojoauth.min.js"></script> -->
     <script src="
-			./mojoauth.min.js"
+    https://cdn.mojoauth.com/js/mojoauth.min.js"
 		>
     </script>
+    <!-- <script src="
+    https://dev-cdn.mojoauth.com/js/mojoauth.min.js"
+		>
+    </script> -->
 </head>
 
 <body>
-    <div><h1>Hello mojoauth</h1>
-        <h2>Hello </h2>
-        <p>Hello</p>
-    </div>
+    
     <div id="mojoauth-passwordless-form"></div>
-    <div><h1>Hello mojoauth</h1>
-        <h2>Hello </h2>
-        <p>Hello</p>
-    </div>
+    
     <script>
-        let test='Phone OTP'
+        let test='Email OTP'
         let source;
          switch(test){
     case 'Magic Link' : source= [ {type:'email',feature:'magiclink'}]
@@ -36,8 +35,8 @@
         // Enter you API Key
         config={
             language: "en", 
-            redirect_url: "localhost:8080/test",
-            source: source,
+            redirect_url: "https://creators-internet.webflow.io/post",
+            source: source= [ {type:'email',feature:'magiclink'}],
         }
 
 //         function registerWebAuthnStart(accessToken) {
@@ -50,18 +49,23 @@
 //    });
 // }
 
-        const mojoauth = new MojoAuth( "d24e0d0c-7ad7-4938-a64f-caef36cd93eb", config);
+if (window.location.search) {
+			const mojoauth = new MojoAuth("71736bb0-8a9b-4f4d-8503-62355cfb030b");
+			mojoauth.signInWithStateID().then((response) => {
+				console.log(response)
+				localStorage.setItem("userTokentest1", response.oauth.access_token)
+			});
+		} else {
+        const mojoauth = new MojoAuth( "71736bb0-8a9b-4f4d-8503-62355cfb030b", config);
         // Use signInWithEmailOTP() for authentication using Email OTP
         mojoauth.signIn().then( response => {
             console.log("reached here")
-            document.getElementById('registerWebAuthn').onclick=function(){
-                registerWebAuthnStart(response.oauth.access_token);
-           };
-            
+            localStorage.setItem("userTokentest2", response.oauth.access_token)
             //          mojoauth.enableWebauthn(response.oauth.access_token)
             
             console.log( response )
         } );
+    }
         // mojoauth.enableWebauthn().then(response=>console.log(response))
     </script>
 <!-- <script type="text/javascript">app_id="62c69be5fda2380020ca0217";distribution_key="dist_2";</script><script type="text/javascript" src="https://loader.knack.com/62c69be5fda2380020ca0217/dist_2/knack.js"></script><div id="knack-dist_2">Loading...</div></body> -->
