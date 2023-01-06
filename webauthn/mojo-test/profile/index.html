@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="../mojoauth.min.js"></script>
+
+	
+</head>
+<body style="display: flex; flex-direction:column; align-items: center">
+<script>
+	const mojoauth = new MojoAuth( "cd62e8c0-9c40-4096-9c08-4d948ef44e69");
+	mojoauth.signInWithStateID().then( response => {
+		localStorage.setItem("userEmailtest2", response.user.identifier)
+            localStorage.setItem("userTokentest2", response.oauth.access_token)
+            //          mojoauth.enableWebauthn(response.oauth.access_token)
+            
+            console.log( response )
+			localStorage.getItem("userTokentest2")?document.getElementById('h3-container').innerText="You have successfully logged in":document.getElementById('h3-container').innerText="Please Login to continue"
+		localStorage.getItem("userEmailtest2")?document.getElementById("email-container").innerText=`Welcome ${localStorage.getItem("userEmailtest2")}`:document.getElementById("email-container").innerText="You are not logged in"
+		localStorage.getItem("userTokentest2")?document.getElementById("login-button-container").innerText="Logout": document.getElementById("login-button-container").innerText="Login";
+		localStorage.getItem("userTokentest2")?document.getElementById("login-button-container").style.display="none":document.getElementById("login-button-container").style.display="block";
+		localStorage.getItem("userTokentest2")?document.getElementById("logout-button-container").innerText="Logout": document.getElementById("logout-button-container").innerText="Login";
+		localStorage.getItem("userTokentest2")?document.getElementById("logout-button-container").style.display="block":document.getElementById("logout-button-container").style.display="none";
+
+		document.getElementById("logout-button-container").onclick=()=>{localStorage.removeItem("userTokentest2"); localStorage.removeItem("userEmailtest2"); window.location.href="/" }
+		document.getElementById("login-button-container").onclick=()=>{ window.location.href="/" }
+        } );
+		
+</script>
+
+<h2 style="margin-top: 100px;" id="email-container"></h2>
+<h3 id="h3-container"></h3>
+<button style="display:none" id="login-button-container"></button>
+<button style="display:none" id="logout-button-container"></button>
+<script>
+	
+</script>
+</body>

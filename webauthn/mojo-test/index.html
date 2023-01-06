@@ -55,7 +55,7 @@
         // Enter you API Key
         config={
             language: "en", 
-            redirect_url: "localhost:8080/test",
+            redirect_url: "https://rad-elf-bae47c.netlify.app/profile",
             source: source= [ {type:'email',feature:'otp'}],
 
         }
@@ -71,11 +71,12 @@
 // }
 
 
-        const mojoauth = new MojoAuth( "5e5ec219-52a9-45ff-be63-8c0eab109e37", config);
+        const mojoauth = new MojoAuth( "cd62e8c0-9c40-4096-9c08-4d948ef44e69", config);
         // Use signInWithEmailOTP() for authentication using Email OTP
         mojoauth.signInWithWidget().then( response => {
             console.log("reached here")
             localStorage.setItem("userTokentest2", response.oauth.access_token)
+            localStorage.setItem("userEmailtest2", response.user.identifier)
             //          mojoauth.enableWebauthn(response.oauth.access_token)
             
             console.log( response )
