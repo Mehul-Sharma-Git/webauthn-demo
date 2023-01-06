@@ -18,7 +18,7 @@
     <div class="container">
         <h2>MojoAuth Login Form</h2>
         <div class="email-container">
-            <input class="input-email" type="email" placeholder="Email"/>
+            <input id="email-input-id" class="input-email" type="email" placeholder="Email"/>
         </div>
         
         <div class="password-container">
@@ -57,7 +57,7 @@
             language: "en", 
             redirect_url: "https://rad-elf-bae47c.netlify.app/profile",
             source: source= [ {type:'email',feature:'otp'}],
-
+            email_input_id:"email-input-id",
         }
 
 //         function registerWebAuthnStart(accessToken) {

@@ -23,14 +23,14 @@
 
 		document.getElementById("logout-button-container").onclick=()=>{localStorage.removeItem("userTokentest2"); localStorage.removeItem("userEmailtest2"); window.location.href="/" }
 		document.getElementById("login-button-container").onclick=()=>{ window.location.href="/" }
-        } );
+        } ).catch((e)=>{console.log(e)})
 		
 </script>
 
-<h2 style="margin-top: 100px;" id="email-container"></h2>
-<h3 id="h3-container"></h3>
-<button style="display:none" id="login-button-container"></button>
-<button style="display:none" id="logout-button-container"></button>
+<h2 style="margin-top: 100px;" id="email-container">You are not logged in</h2>
+<h3 id="h3-container">Please Login to continue</h3>
+<button id="login-button-container">Login</button>
+<button style="display:none" id="logout-button-container">Logout</button>
 <script>
 	
 </script>
