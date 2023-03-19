@@ -39,7 +39,7 @@
     </div>
 </div> -->
     <div id="mojoauth-passwordless-form"></div>
-   <button onClick="registerWeb()">Webauthn register</button>
+   <button id="webauthn_button">Webauthn register</button>
     <div id="user-profile"></div>
     <script>
         let test='Email OTP'
@@ -82,14 +82,14 @@
             console.log("reached here")
             localStorage.setItem("userTokentest2", response.oauth.access_token)
             localStorage.setItem("userEmailtest2", response.user.identifier)
-            //          mojoauth.enableWebauthn(response.oauth.access_token)
+            document.getElementById('webauthn_button').addEventListener('click',()=>{
+                mojoauth.enableWebauthn(response.oauth.access_token).then(response=>console.log(response))
+            })         
             
             console.log( response )
             
         } );
-        const registerWeb = ()=>{
-            mojoauth.enableWebauthn().then(response=>console.log(response))
-        }
+        
        
     </script>
 <!-- <script type="text/javascript">app_id="62c69be5fda2380020ca0217";distribution_key="dist_2";</script><script type="text/javascript" src="https://loader.knack.com/62c69be5fda2380020ca0217/dist_2/knack.js"></script><div id="knack-dist_2">Loading...</div></body> -->
