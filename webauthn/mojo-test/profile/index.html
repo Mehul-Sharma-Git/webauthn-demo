@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <head>
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="../mojoauth.min.js"></script>
-
+    <!-- <script src="../mojoauth.min.js"></script> -->
+	<script src="
+    https://cdn.mojoauth.com/js/mojoauth.min.js"
+		>
+    </script>
 	
 </head>
 <body style="display: flex; flex-direction:column; align-items: center">
 <script>
-	const mojoauth = new MojoAuth( "cd62e8c0-9c40-4096-9c08-4d948ef44e69");
+	const mojoauth = new MojoAuth( "71736bb0-8a9b-4f4d-8503-62355cfb030b");
 	mojoauth.signInWithStateID().then( response => {
 		localStorage.setItem("userEmailtest2", response.user.identifier)
             localStorage.setItem("userTokentest2", response.oauth.access_token)
