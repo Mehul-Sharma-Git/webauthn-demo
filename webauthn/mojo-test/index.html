@@ -59,7 +59,7 @@
         // Enter you API Key
         config={
             language: "en", 
-            redirect_url: "https://mojoauth-fido-demo.netlify.app/profile",
+            redirect_url: "http://localhost:8080/profile",
             source: source= [ {type:'email',feature:'magiclink'}],
             email_input_id:"email-input-id",
             
@@ -76,7 +76,7 @@
 // }
 
 
-        const mojoauth = new MojoAuth( "71736bb0-8a9b-4f4d-8503-62355cfb030b", config);
+        const mojoauth = new MojoAuth( "41f05d38-7d5f-4a8d-94ee-4539452ae167", config);
         // Use signInWithEmailOTP() for authentication using Email OTP
         mojoauth.signIn().then( response => {
             console.log("reached here")
